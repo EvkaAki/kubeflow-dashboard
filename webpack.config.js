@@ -162,9 +162,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin([DESTINATION]),
-        new CopyWebpackPlugin(POLYFILLS.concat([
-            {from: resolve(SRC, 'kubeflow-palette.css'), to: DESTINATION},
-        ])),
         new DefinePlugin({
             BUILD_VERSION: JSON.stringify(BUILD_VERSION),
             VERSION: JSON.stringify(PKG_VERSION),
