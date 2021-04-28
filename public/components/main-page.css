@@ -5,7 +5,7 @@
 :host {
     @apply --layout-vertical;
     --accent-color: #a96bea;
-    --primary-background-color: #cb36ee;
+    --primary-background-color: #4a0b58;
     --sidebar-default-color: rgba(255, 255, 255, 0.5);
     --divider-color: #dadce0;
     --border-color: #eeeeef;
