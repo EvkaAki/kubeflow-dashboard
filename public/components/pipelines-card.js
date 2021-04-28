@@ -24,7 +24,6 @@ export class PipelinesCard extends PolymerElement {
     static get template() {
         return html`
         <style include="card-styles">
-            body > .Main-Toolbar {background-color: var(--primary-background-color)}
             :host {
                 @apply --layout-vertical;
             }
