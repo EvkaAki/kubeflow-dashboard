@@ -35,7 +35,7 @@ RUN npm rebuild && \
         npm install; \
     fi && \
     npm test && \
-    npm run build && \
+    npm n && \
     npm prune --production
 
 # Step 2: Packages assets for serving
@@ -44,6 +44,10 @@ FROM node:12.18.3-alpine AS serve
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=build /centraldashboard .
+RUN apk update && apk add --no-cache sudo bash openrc openssh
+RUN echo 'PermitRootLogin yes' >> etc/ssh/sshd_config
+RUN echo 'PasswordAuthentication yes' >> etc/ssh/sshd_config
+RUN mkdir -p /run/openrc && touch /run/openrc/softlevel && rc-update add sshd default
 
 EXPOSE 8082
 ENTRYPOINT ["npm", "start"]
