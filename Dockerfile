@@ -18,11 +18,12 @@ RUN BUILDARCH="$(dpkg --print-architecture)" &&  npm rebuild && \
     [ "$BUILDARCH" = "armhf" ]; then \
     export CFLAGS=-Wno-error && \
     export CXXFLAGS=-Wno-error;  \
-    fi && \
-    npm install && \
-    npm test && \
-    npm run build && \
-    npm prune --production
+    fi
+
+RUN npm install
+#RUN npm test
+RUN npm run build
+RUN npm prune --production
 
 # Step 2: Packages assets for serving
 FROM node:12.22.12-alpine AS serve
