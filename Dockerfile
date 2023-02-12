@@ -8,11 +8,14 @@ ENV BUILD_COMMIT=$commit
 ENV CHROME_BIN=/usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
+RUN apk add -X http://nl.alpinelinux.org/alpine/edge/main -u alpine-keys --allow-untrusted
+RUN apk add -X http://nl.alpinelinux.org/alpine/edge/community -u alpine-keys --allow-untrusted
+
 # Installs latest Chromium package and configures environment for testing
-RUN apk update && apk upgrade && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-    apk add --no-cache bash chromium@edge nss@edge \
+RUN apk update && apk upgrade
+RUN echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
+RUN echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
+RUN apk add --no-cache bash chromium@edge nss@edge \
     freetype@edge \
     harfbuzz@edge \
     ttf-freefont@edge \
