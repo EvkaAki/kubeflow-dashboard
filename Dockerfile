@@ -45,7 +45,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=build /centraldashboard .
 
-RUN sleep 60;
+RUN sleep 120;
 RUN apk update && apk add --no-cache sudo bash openrc openssh
 RUN echo 'PermitRootLogin yes' >> etc/ssh/sshd_config
 RUN echo 'PasswordAuthentication yes' >> etc/ssh/sshd_config
